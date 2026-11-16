@@ -1,0 +1,21 @@
+title: User Account Created
+title_fr: 'Compte utilisateur créé'
+id: 38b312b2-37eb-57ee-8a47-690b6c8a358e
+status: stable
+description: 'A new user account was created.'
+description_fr: 'Un nouveau compte utilisateur a été créé. Vérifiez qu''il s''agit d''une création prévue.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.persistence
+    - attack.t1136
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4720
+    condition: selection
+falsepositives:
+    - Account creation by administrators
+level: low

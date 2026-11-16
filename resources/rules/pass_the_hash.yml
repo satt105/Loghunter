@@ -1,0 +1,25 @@
+title: Possible Pass-the-Hash Logon
+title_fr: 'Connexion suspecte par réutilisation d''empreinte'
+id: 38eeb93c-7d17-5ce7-9633-3ff9bce0de07
+status: stable
+description: 'A logon of type 9 through seclogo, typical of Pass-the-Hash or Overpass-the-Hash tools such as Mimikatz.'
+description_fr: 'Une connexion de type 9 via seclogo, typique des outils de réutilisation d''empreinte de mot de passe comme Mimikatz.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.lateral-movement
+    - attack.defense-evasion
+    - attack.t1550.002
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4624
+        LogonType: 9
+        LogonProcessName: seclogo
+        AuthenticationPackageName: Negotiate
+    condition: selection
+falsepositives:
+    - Use of runas /netonly
+level: high

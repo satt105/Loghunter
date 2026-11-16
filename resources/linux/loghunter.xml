@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mime-info xmlns="http://www.freedesktop.org/standards/shared-mime-info">
+  <mime-type type="application/x-loghunter-project">
+    <comment>LogHunter project</comment>
+    <comment xml:lang="fr">Projet LogHunter</comment>
+    <sub-class-of type="application/vnd.sqlite3"/>
+    <glob pattern="*.loghunter"/>
+  </mime-type>
+</mime-info>

@@ -1,0 +1,27 @@
+title: Mimikatz in PowerShell
+title_fr: 'Mimikatz dans PowerShell'
+id: bac73358-25ed-53cd-94e3-38f9ea063390
+status: stable
+description: 'A PowerShell script contains keywords of the Mimikatz credential theft tool.'
+description_fr: 'Un script PowerShell contient des mots-clés de l''outil de vol d''identifiants Mimikatz.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.credential-access
+    - attack.t1003.001
+logsource:
+    product: windows
+    category: ps_script
+detection:
+    selection:
+        ScriptBlockText|contains:
+            - 'sekurlsa::'
+            - 'kerberos::golden'
+            - 'kerberos::ptt'
+            - 'lsadump::'
+            - 'privilege::debug'
+            - 'Invoke-Mimikatz'
+    condition: selection
+falsepositives:
+    - Security testing
+level: critical

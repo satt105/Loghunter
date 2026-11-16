@@ -1,0 +1,22 @@
+title: Windows Event Log Cleared
+title_fr: 'Journal Windows effacé'
+id: 0f830b37-3fd8-57d2-b298-b10500b1a168
+status: stable
+description: 'A Windows event log (System, Application...) was cleared.'
+description_fr: 'Un journal Windows (Système, Application…) a été vidé, ce qui peut masquer une activité malveillante.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.defense-evasion
+    - attack.t1070.001
+logsource:
+    product: windows
+    service: system
+detection:
+    selection:
+        EventID: 104
+        Provider_Name: Microsoft-Windows-Eventlog
+    condition: selection
+falsepositives:
+    - Planned log maintenance
+level: high

@@ -1,0 +1,22 @@
+title: Built-in Administrator Account Enabled
+title_fr: 'Compte administrateur intégré activé'
+id: ba8dabaa-35b1-54c0-baf5-11204bebb9c1
+status: stable
+description: 'The built-in Administrator account was enabled.'
+description_fr: 'Le compte administrateur intégré a été activé.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.persistence
+    - attack.t1078.003
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4722
+        TargetSid|endswith: '-500'
+    condition: selection
+falsepositives:
+    - Planned administration
+level: medium

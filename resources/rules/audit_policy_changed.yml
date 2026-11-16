@@ -1,0 +1,21 @@
+title: System Audit Policy Changed
+title_fr: 'Stratégie d''audit modifiée'
+id: e91d7129-cfb4-58a1-bdca-998f31dd8c4a
+status: stable
+description: 'The system audit policy was changed. Disabling auditing prevents Windows from recording activity.'
+description_fr: 'La stratégie d''audit a été modifiée. Désactiver l''audit empêche Windows d''enregistrer l''activité.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.defense-evasion
+    - attack.t1562.002
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4719
+    condition: selection
+falsepositives:
+    - Administrators updating the audit policy
+level: medium

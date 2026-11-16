@@ -1,0 +1,11 @@
+# Normalized line endings (LF in the repository); PowerShell scripts in CRLF.
+* text=auto eol=lf
+*.ps1 text eol=crlf
+*.iss text eol=crlf
+
+# Binary files.
+*.evtx binary
+*.ico binary
+*.png binary
+*.7z binary
+*.zip binary

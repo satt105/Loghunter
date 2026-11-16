@@ -1,0 +1,38 @@
+title: Backups or Shadow Copies Deleted
+title_fr: 'Suppression des sauvegardes et clichés instantanés'
+id: 94303c57-44f4-55a4-836d-08b8019418d9
+status: stable
+description: 'A command deletes shadow copies or disables system recovery, a typical step before ransomware encryption.'
+description_fr: 'Une commande supprime les clichés instantanés ou désactive la récupération du système. C''est une étape typique avant le chiffrement par un rançongiciel.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.impact
+    - attack.t1490
+logsource:
+    product: windows
+    category: process_creation
+detection:
+    selection_vssadmin:
+        CommandLine|contains|all:
+            - 'vssadmin'
+            - 'delete'
+            - 'shadows'
+    selection_wmic:
+        CommandLine|contains|all:
+            - 'shadowcopy'
+            - 'delete'
+    selection_wbadmin:
+        CommandLine|contains|all:
+            - 'wbadmin'
+            - 'delete'
+            - 'catalog'
+    selection_bcdedit:
+        CommandLine|contains|all:
+            - 'bcdedit'
+            - 'recoveryenabled'
+            - 'no'
+    condition: 1 of selection_*
+falsepositives:
+    - Backup software maintenance
+level: high

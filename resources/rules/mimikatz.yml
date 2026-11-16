@@ -1,0 +1,28 @@
+title: Mimikatz Command
+title_fr: 'Commande Mimikatz'
+id: c71b7ba8-2727-54ea-840c-07101571261e
+status: stable
+description: 'A command line contains keywords of the Mimikatz credential theft tool.'
+description_fr: 'Une ligne de commande contient des mots-clés de l''outil de vol d''identifiants Mimikatz.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.credential-access
+    - attack.t1003.001
+logsource:
+    product: windows
+    category: process_creation
+detection:
+    selection:
+        CommandLine|contains:
+            - 'sekurlsa::'
+            - 'kerberos::golden'
+            - 'kerberos::ptt'
+            - 'lsadump::'
+            - 'privilege::debug'
+            - 'Invoke-Mimikatz'
+            - 'mimikatz.exe'
+    condition: selection
+falsepositives:
+    - Security testing
+level: critical

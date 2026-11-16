@@ -1,0 +1,21 @@
+title: Event Logging Service Shut Down
+title_fr: 'Arrêt du service de journalisation'
+id: 44d3fc2e-5a2c-5293-9397-c403cff19c02
+status: stable
+description: 'The Windows event logging service was stopped. Outside of a normal shutdown, this can hide malicious activity.'
+description_fr: 'Le service de journalisation de Windows a été arrêté. En dehors d''un arrêt normal de l''ordinateur, cela peut servir à masquer une activité.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.defense-evasion
+    - attack.t1562.002
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 1100
+    condition: selection
+falsepositives:
+    - Normal computer shutdown
+level: low

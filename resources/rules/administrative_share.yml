@@ -1,0 +1,26 @@
+title: Administrative Share Accessed
+title_fr: 'Accès à un partage administratif'
+id: 65a7ec9c-1619-5183-95e4-76882c294004
+status: stable
+description: 'An administrative share (C$, ADMIN$) was accessed over the network, which is common during lateral movement.'
+description_fr: 'Un partage administratif (C$, ADMIN$) a été ouvert par le réseau, ce qui est courant lors d''un déplacement latéral.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.lateral-movement
+    - attack.t1021.002
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 5140
+        ShareName|endswith:
+            - '\\C$'
+            - '\\ADMIN$'
+    filter:
+        SubjectUserName|endswith: '$'
+    condition: selection and not filter
+falsepositives:
+    - Administration and software deployment
+level: low

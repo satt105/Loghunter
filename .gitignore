@@ -1,0 +1,20 @@
+# Files that never belong in the repository.
+
+# Build output and packages.
+/build/
+/dist/
+/out/
+CMakeUserPresets.json
+
+# Real logs, projects and crash reports: they may contain internal data.
+*.evtx
+*.evt
+*.loghunter
+*.dmp
+/log.*
+
+# Editors.
+/.vs/
+/.vscode/
+/.idea/
+*.user

@@ -1,0 +1,27 @@
+title: LSASS Memory Dump
+title_fr: 'Copie de la mémoire de LSASS'
+id: dfab2dcd-4332-5f3f-aa2b-2709d704fc5a
+status: stable
+description: 'A command dumps the memory of LSASS, the process that holds the credentials of logged on users.'
+description_fr: 'Une commande copie la mémoire de LSASS, le processus qui contient les identifiants des utilisateurs connectés.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.credential-access
+    - attack.t1003.001
+logsource:
+    product: windows
+    category: process_creation
+detection:
+    selection_comsvcs:
+        CommandLine|contains|all:
+            - 'comsvcs'
+            - 'minidump'
+    selection_procdump:
+        CommandLine|contains|all:
+            - 'procdump'
+            - 'lsass'
+    condition: 1 of selection_*
+falsepositives:
+    - Crash analysis by administrators
+level: critical

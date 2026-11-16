@@ -1,0 +1,31 @@
+title: PowerShell Download Cradle
+title_fr: 'Téléchargement par PowerShell'
+id: af5a6f6e-e64d-5b74-ba78-f21461b5c80f
+status: stable
+description: 'A PowerShell script downloads content from the Internet, a common way to fetch and run malware.'
+description_fr: 'Un script PowerShell télécharge du contenu depuis Internet, un moyen courant de récupérer et lancer un logiciel malveillant.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.execution
+    - attack.command-and-control
+    - attack.t1059.001
+    - attack.t1105
+logsource:
+    product: windows
+    category: ps_script
+detection:
+    selection_telechargement:
+        ScriptBlockText|contains:
+            - 'Net.WebClient'
+            - 'DownloadString'
+            - 'DownloadFile'
+            - 'DownloadData'
+            - 'Invoke-WebRequest'
+            - 'Start-BitsTransfer'
+    selection_url:
+        ScriptBlockText|contains: 'http'
+    condition: all of selection_*
+falsepositives:
+    - Legitimate administration scripts
+level: medium

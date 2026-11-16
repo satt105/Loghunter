@@ -1,0 +1,23 @@
+title: SID History Added to an Account
+title_fr: 'Historique SID ajouté à un compte'
+id: 2dd481db-8f8c-58db-835c-7f643c54d287
+status: stable
+description: 'SID history was added to an account, which can silently grant the rights of another account.'
+description_fr: 'Un historique SID a été ajouté à un compte, ce qui peut lui donner discrètement les droits d''un autre compte.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.privilege-escalation
+    - attack.t1134.005
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID:
+            - 4765
+            - 4766
+    condition: selection
+falsepositives:
+    - Domain migrations
+level: high

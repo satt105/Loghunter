@@ -1,0 +1,23 @@
+title: Kerberos Ticket Without Pre-Authentication
+title_fr: 'Ticket Kerberos sans pré-authentification (AS-REP Roasting)'
+id: b7a10d1b-569b-52bd-a84f-20121b81be9e
+status: stable
+description: 'A Kerberos ticket was issued to an account that does not require pre-authentication, which allows offline password cracking.'
+description_fr: 'Un ticket Kerberos a été délivré à un compte qui n''exige pas de pré-authentification, ce qui permet de casser son mot de passe hors ligne.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.credential-access
+    - attack.t1558.004
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4768
+        PreAuthType: 0
+        Status: '0x0'
+    condition: selection
+falsepositives:
+    - Accounts intentionally configured without pre-authentication
+level: high

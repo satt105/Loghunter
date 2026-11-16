@@ -1,0 +1,31 @@
+title: User Added From the Command Line
+title_fr: 'Utilisateur ajouté en ligne de commande'
+id: c5c22ad5-a1e4-54ea-83b4-18bc7b4f7598
+status: stable
+description: 'The net command was used to create an account or to add it to a local group.'
+description_fr: 'La commande net a servi à créer un compte ou à l''ajouter à un groupe local.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.persistence
+    - attack.t1136.001
+logsource:
+    product: windows
+    category: process_creation
+detection:
+    selection_programme:
+        Image|endswith:
+            - '\\net.exe'
+            - '\\net1.exe'
+    selection_utilisateur:
+        CommandLine|contains|all:
+            - ' user '
+            - '/add'
+    selection_groupe:
+        CommandLine|contains|all:
+            - ' localgroup '
+            - '/add'
+    condition: selection_programme and (selection_utilisateur or selection_groupe)
+falsepositives:
+    - Administration scripts
+level: medium

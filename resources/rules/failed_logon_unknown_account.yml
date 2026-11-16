@@ -1,0 +1,22 @@
+title: Failed Logon With a Nonexistent Account
+title_fr: 'Échec de connexion avec un compte inexistant'
+id: ba358b29-1f0e-56fa-9b47-1c8c0fdc7e6b
+status: stable
+description: 'A logon failed because the account does not exist, a typical sign of account enumeration or password spraying.'
+description_fr: 'Une connexion a échoué parce que le compte n''existe pas. C''est un signe classique d''énumération de comptes ou de pulvérisation de mots de passe.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.credential-access
+    - attack.t1110.003
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4625
+        SubStatus: '0xc0000064'
+    condition: selection
+falsepositives:
+    - Typo in a user name
+level: medium

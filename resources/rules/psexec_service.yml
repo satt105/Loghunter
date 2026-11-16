@@ -1,0 +1,26 @@
+title: PsExec Service Installed
+title_fr: 'Service PsExec installé'
+id: 2bcfc59d-fcce-5817-990c-8dd8eb0d783e
+status: stable
+description: 'The PsExec service was installed, which allows running commands remotely.'
+description_fr: 'Le service PsExec a été installé. Il permet de lancer des commandes à distance.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.lateral-movement
+    - attack.execution
+    - attack.t1021.002
+    - attack.t1569.002
+logsource:
+    product: windows
+    service: system
+detection:
+    selection:
+        EventID: 7045
+    selection_nom:
+        - ServiceName: 'PSEXESVC'
+        - ImagePath|endswith: '\\PSEXESVC.exe'
+    condition: selection and selection_nom
+falsepositives:
+    - Administrators using PsExec
+level: medium

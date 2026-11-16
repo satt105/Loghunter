@@ -1,0 +1,35 @@
+title: Suspicious Access to LSASS Memory
+title_fr: 'Accès suspect à la mémoire de LSASS'
+id: d7cc8963-8f99-58d5-b3ae-c27257f4b42d
+status: stable
+description: 'A program opened LSASS with rights that allow reading credentials.'
+description_fr: 'Un programme a ouvert LSASS avec des droits qui permettent de lire les identifiants.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.credential-access
+    - attack.t1003.001
+logsource:
+    product: windows
+    category: process_access
+detection:
+    selection:
+        TargetImage|endswith: '\\lsass.exe'
+        GrantedAccess:
+            - '0x1010'
+            - '0x1410'
+            - '0x1438'
+            - '0x143a'
+            - '0x1fffff'
+    filter:
+        SourceImage|endswith:
+            - '\\MsMpEng.exe'
+            - '\\wininit.exe'
+            - '\\csrss.exe'
+            - '\\svchost.exe'
+            - '\\lsm.exe'
+            - '\\wmiprvse.exe'
+    condition: selection and not filter
+falsepositives:
+    - Security products
+level: high

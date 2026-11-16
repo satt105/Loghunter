@@ -1,0 +1,21 @@
+title: Remote Desktop Session Opened
+title_fr: 'Session Bureau à distance ouverte'
+id: bb898f2e-b9c7-5a6e-a6b5-4e73cae65092
+status: stable
+description: 'A Remote Desktop session was opened on the computer.'
+description_fr: 'Une session Bureau à distance a été ouverte sur l''ordinateur.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.lateral-movement
+    - attack.t1021.001
+logsource:
+    product: windows
+    service: terminalservices-localsessionmanager
+detection:
+    selection:
+        EventID: 21
+    condition: selection
+falsepositives:
+    - Administrators using Remote Desktop
+level: low

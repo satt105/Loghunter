@@ -1,0 +1,24 @@
+title: AMSI Bypass Attempt
+title_fr: 'Tentative de contournement d''AMSI'
+id: bf3b6eef-1c9c-557f-aa90-88c6f15ab830
+status: stable
+description: 'A PowerShell script tries to disable AMSI, the interface that lets antivirus software inspect scripts.'
+description_fr: 'Un script PowerShell tente de désactiver AMSI, l''interface qui permet à l''antivirus d''inspecter les scripts.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.defense-evasion
+    - attack.t1562.001
+logsource:
+    product: windows
+    category: ps_script
+detection:
+    selection:
+        ScriptBlockText|contains:
+            - 'AmsiUtils'
+            - 'amsiInitFailed'
+            - 'AmsiScanBuffer'
+    condition: selection
+falsepositives:
+    - Security testing
+level: high

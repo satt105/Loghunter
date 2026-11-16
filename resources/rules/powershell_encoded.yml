@@ -1,0 +1,33 @@
+title: PowerShell Encoded Command
+title_fr: 'Commande PowerShell encodée'
+id: 9db9224c-7de1-5ce6-a2c4-2210613bf3f6
+status: stable
+description: 'PowerShell was started with an encoded command, often used to hide malicious code.'
+description_fr: 'PowerShell a été lancé avec une commande encodée, souvent utilisée pour masquer du code malveillant.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.execution
+    - attack.defense-evasion
+    - attack.t1059.001
+    - attack.t1027
+logsource:
+    product: windows
+    category: process_creation
+detection:
+    selection_programme:
+        Image|endswith:
+            - '\\powershell.exe'
+            - '\\pwsh.exe'
+    selection_commande:
+        CommandLine|windash|contains:
+            - ' -e '
+            - ' -en '
+            - ' -enc '
+            - ' -enco'
+            - ' -ec '
+            - ' -EncodedCommand'
+    condition: all of selection_*
+falsepositives:
+    - Management tools that encode their commands
+level: medium

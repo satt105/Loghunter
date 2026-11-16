@@ -1,0 +1,32 @@
+title: Suspicious Use of Mshta or Regsvr32
+title_fr: 'Utilisation suspecte de Mshta ou Regsvr32'
+id: a96736c1-ecef-5670-8154-5a5ccd978c6a
+status: stable
+description: 'Mshta or Regsvr32 was used to run remote or scripted content, a common way to bypass application control.'
+description_fr: 'Mshta ou Regsvr32 a servi à exécuter du contenu distant ou un script, un moyen courant de contourner le contrôle des applications.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.defense-evasion
+    - attack.t1218.005
+    - attack.t1218.010
+logsource:
+    product: windows
+    category: process_creation
+detection:
+    selection_mshta:
+        Image|endswith: '\\mshta.exe'
+        CommandLine|contains:
+            - 'http'
+            - 'javascript:'
+            - 'vbscript:'
+    selection_regsvr32:
+        Image|endswith: '\\regsvr32.exe'
+        CommandLine|contains:
+            - 'scrobj'
+            - '/i:http'
+            - '-i:http'
+    condition: 1 of selection_*
+falsepositives:
+    - Legacy applications
+level: high

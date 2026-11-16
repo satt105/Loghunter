@@ -1,0 +1,21 @@
+title: Security Event Log Cleared
+title_fr: 'Journal de sécurité effacé'
+id: 0aaaacdc-d1a9-520a-aed0-8d78dd9351d6
+status: stable
+description: 'The Security event log was cleared, which can hide an attacker''s tracks.'
+description_fr: 'Le journal de sécurité a été vidé. Un attaquant efface souvent ce journal pour masquer ses traces.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.defense-evasion
+    - attack.t1070.001
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 1102
+    condition: selection
+falsepositives:
+    - Planned log maintenance
+level: high

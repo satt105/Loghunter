@@ -1,0 +1,22 @@
+title: New Service Installed
+title_fr: 'Nouveau service installé'
+id: a508e595-f34c-5001-933e-deb525408bed
+status: stable
+description: 'A new service was installed on the computer.'
+description_fr: 'Un nouveau service a été installé sur l''ordinateur.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.persistence
+    - attack.t1543.003
+logsource:
+    product: windows
+    service: system
+detection:
+    selection:
+        Provider_Name: 'Service Control Manager'
+        EventID: 7045
+    condition: selection
+falsepositives:
+    - Software installation
+level: low

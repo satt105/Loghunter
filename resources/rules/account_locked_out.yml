@@ -1,0 +1,21 @@
+title: User Account Locked Out
+title_fr: 'Compte utilisateur verrouillé'
+id: d6225ece-90ee-5cf0-9463-f5c59894d09d
+status: stable
+description: 'An account was locked out after too many failed logons, possibly because of a password guessing attempt.'
+description_fr: 'Un compte a été verrouillé après trop d''échecs de connexion, ce qui peut révéler une tentative de deviner le mot de passe.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.credential-access
+    - attack.t1110
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4740
+    condition: selection
+falsepositives:
+    - Users mistyping their password
+level: low

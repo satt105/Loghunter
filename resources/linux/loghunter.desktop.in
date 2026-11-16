@@ -1,0 +1,13 @@
+[Desktop Entry]
+Type=Application
+Name=LogHunter
+GenericName=Windows event log analyzer
+GenericName[fr]=Analyse des journaux Windows
+Comment=Windows event log (EVTX) analysis and threat detection
+Comment[fr]=Analyse des journaux Windows (EVTX) et détection des menaces
+Exec=LogHunter %F
+Icon=loghunter
+Terminal=false
+Categories=Utility;Security;System;
+MimeType=application/x-loghunter-project;
+Keywords=evtx;audit;log;security;windows;

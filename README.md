@@ -19,11 +19,11 @@ Event Viewer gives you a raw list. LogHunter links events together, flags suspic
 
 ## Download
 
-**[Download LogHunter on C.A.P.E](https://app.bouret-serveur.fr/projet/loghunter)**
+**[Download the latest release](https://github.com/satt105/Loghunter/releases/latest)**
 
 | Platform    | Package                                   |
 |-------------|-------------------------------------------|
-| Windows x64 | `LogHunter-windows-x86_64.zip`            |
+| Windows x64 | `LogHunter-<version>-windows-x64.zip`     |
 | Linux x64   | `LogHunter-<version>-linux-x86_64.tar.gz` |
 
 Every release comes with SHA-256 checksums and the full source code (zip and tar.gz).
@@ -37,7 +37,7 @@ sha256sum -c LogHunter-0.0.2-linux-x86_64.tar.gz.sha256
 
 ```powershell
 # Windows: compare the output with the content of the .sha256 file
-Get-FileHash .\LogHunter-windows-x86_64.zip -Algorithm SHA256
+Get-FileHash .\LogHunter-0.0.2-windows-x64.zip -Algorithm SHA256
 ```
 
 ## Why LogHunter
@@ -111,7 +111,7 @@ The full guide is available in the application (press `F1`).
 
 ## Feedback
 
-Found a bug or have an idea? Open an issue.
+Found a bug or have an idea? [Open an issue](https://github.com/satt105/Loghunter/issues).
 
 ## License
 

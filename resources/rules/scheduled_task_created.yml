@@ -1,0 +1,22 @@
+title: Scheduled Task Created
+title_fr: 'Tâche planifiée créée'
+id: 043f8495-e1da-5e42-9a3a-121d7ad56b96
+status: stable
+description: 'A scheduled task was created.'
+description_fr: 'Une tâche planifiée a été créée.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.persistence
+    - attack.execution
+    - attack.t1053.005
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4698
+    condition: selection
+falsepositives:
+    - Software installation
+level: low

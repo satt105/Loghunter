@@ -1,0 +1,22 @@
+title: Remote Desktop Logon
+title_fr: 'Connexion par le Bureau à distance'
+id: 093a9201-a606-5155-b619-2d4b3753e3ac
+status: stable
+description: 'An account logged on through Remote Desktop.'
+description_fr: 'Un compte s''est connecté par le Bureau à distance.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.lateral-movement
+    - attack.t1021.001
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4624
+        LogonType: 10
+    condition: selection
+falsepositives:
+    - Administrators using Remote Desktop
+level: low

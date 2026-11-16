@@ -1,0 +1,21 @@
+title: Microsoft Defender Real-Time Protection Disabled
+title_fr: 'Protection en temps réel de Defender désactivée'
+id: 00a6327d-62ea-5484-8cec-784c81d4ee1b
+status: stable
+description: 'Microsoft Defender real-time protection was disabled.'
+description_fr: 'La protection en temps réel de Microsoft Defender a été désactivée.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.defense-evasion
+    - attack.t1562.001
+logsource:
+    product: windows
+    service: windefend
+detection:
+    selection:
+        EventID: 5001
+    condition: selection
+falsepositives:
+    - Troubleshooting by administrators
+level: high

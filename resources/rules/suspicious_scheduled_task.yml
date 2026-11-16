@@ -1,0 +1,38 @@
+title: Suspicious Scheduled Task Created
+title_fr: 'Tâche planifiée suspecte créée'
+id: e39b6064-ad8b-5b1e-840b-e3bb22745df5
+status: stable
+description: 'A scheduled task was created to run a shell, a script or a program from a temporary folder.'
+description_fr: 'Une tâche planifiée a été créée pour lancer un interpréteur, un script ou un programme situé dans un dossier temporaire.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.persistence
+    - attack.execution
+    - attack.t1053.005
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID:
+            - 4698
+            - 4702
+    selection_contenu:
+        TaskContent|contains:
+            - 'powershell'
+            - 'pwsh'
+            - 'cmd.exe /c'
+            - 'cmd /c'
+            - 'mshta'
+            - 'rundll32'
+            - 'regsvr32'
+            - 'wscript'
+            - 'cscript'
+            - '\\AppData\\'
+            - '\\Temp\\'
+            - '\\Users\\Public\\'
+    condition: selection and selection_contenu
+falsepositives:
+    - Administration scripts
+level: high

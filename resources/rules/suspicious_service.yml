@@ -1,0 +1,41 @@
+title: Suspicious Service Installed
+title_fr: 'Service suspect installé'
+id: 6c6c74b3-410d-5cf9-96fe-b00a56a1e727
+status: stable
+description: 'A service was installed with a command line that launches a shell, a script or a program from a temporary folder.'
+description_fr: 'Un service a été installé avec une commande qui lance un interpréteur, un script ou un programme situé dans un dossier temporaire.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.persistence
+    - attack.execution
+    - attack.t1543.003
+    - attack.t1569.002
+logsource:
+    product: windows
+    service: system
+detection:
+    selection:
+        Provider_Name: 'Service Control Manager'
+        EventID: 7045
+    selection_commande:
+        ImagePath|contains:
+            - 'powershell'
+            - 'pwsh'
+            - 'cmd.exe /c'
+            - 'cmd /c'
+            - '%COMSPEC%'
+            - 'rundll32'
+            - 'mshta'
+            - 'regsvr32'
+            - 'certutil'
+            - 'bitsadmin'
+            - 'wscript'
+            - 'cscript'
+            - '\\AppData\\'
+            - '\\Temp\\'
+            - '\\Users\\Public\\'
+    condition: selection and selection_commande
+falsepositives:
+    - Legitimate installers using scripts
+level: high

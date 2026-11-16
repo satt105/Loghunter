@@ -1,0 +1,27 @@
+title: Directory Replication Requested by a User (DCSync)
+title_fr: 'Réplication de l''annuaire demandée par un utilisateur (DCSync)'
+id: 04b89d3d-a92b-5fed-b818-a147cd7fea7a
+status: stable
+description: 'A non-computer account requested directory replication rights, the technique used by Mimikatz DCSync to steal password hashes.'
+description_fr: 'Un compte qui n''est pas un contrôleur de domaine a demandé la réplication de l''annuaire. C''est la technique DCSync utilisée pour voler les empreintes de mots de passe.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.credential-access
+    - attack.t1003.006
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4662
+        Properties|contains:
+            - '1131f6aa-9c07-11d1-f79f-00c04fc2dcd2'
+            - '1131f6ad-9c07-11d1-f79f-00c04fc2dcd2'
+            - '89e95b76-444d-4c62-991a-0facbeda640c'
+    filter:
+        SubjectUserName|endswith: '$'
+    condition: selection and not filter
+falsepositives:
+    - Directory synchronisation tools such as Azure AD Connect
+level: critical

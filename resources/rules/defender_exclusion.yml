@@ -1,0 +1,22 @@
+title: Microsoft Defender Exclusion Added
+title_fr: 'Exclusion ajoutée à Defender'
+id: bf9892e4-44a9-5263-9632-d0ad0fe7e749
+status: stable
+description: 'An exclusion was added to Microsoft Defender, a common way to hide malware from scans.'
+description_fr: 'Une exclusion a été ajoutée à Microsoft Defender. C''est un moyen courant de soustraire un logiciel malveillant aux analyses.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.defense-evasion
+    - attack.t1562.001
+logsource:
+    product: windows
+    service: windefend
+detection:
+    selection:
+        EventID: 5007
+        NewValue|contains: '\\Exclusions\\'
+    condition: selection
+falsepositives:
+    - Exclusions set by administrators
+level: medium

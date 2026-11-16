@@ -1,0 +1,24 @@
+title: Malware Detected by Microsoft Defender
+title_fr: 'Logiciel malveillant détecté par Defender'
+id: 45a1b1f7-8ac2-569a-a2be-a7fc1342946b
+status: stable
+description: 'Microsoft Defender detected a threat or took action against it.'
+description_fr: 'Microsoft Defender a détecté une menace ou a agi contre elle.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.execution
+    - attack.t1204
+logsource:
+    product: windows
+    service: windefend
+detection:
+    selection:
+        EventID:
+            - 1006
+            - 1116
+            - 1117
+    condition: selection
+falsepositives:
+    - Test files such as EICAR
+level: high

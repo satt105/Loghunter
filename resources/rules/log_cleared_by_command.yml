@@ -1,0 +1,28 @@
+title: Event Log Cleared From the Command Line
+title_fr: 'Journal effacé en ligne de commande'
+id: 2c045f10-20b3-51f9-80e2-46cda90dea6b
+status: stable
+description: 'A command clears Windows event logs.'
+description_fr: 'Une commande efface des journaux Windows.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.defense-evasion
+    - attack.t1070.001
+logsource:
+    product: windows
+    category: process_creation
+detection:
+    selection_wevtutil:
+        Image|endswith: '\\wevtutil.exe'
+        CommandLine|contains:
+            - ' cl '
+            - ' clear-log '
+    selection_powershell:
+        CommandLine|contains:
+            - 'Clear-EventLog'
+            - 'Remove-EventLog'
+    condition: 1 of selection_*
+falsepositives:
+    - Planned log maintenance
+level: high

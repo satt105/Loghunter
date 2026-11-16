@@ -1,0 +1,27 @@
+title: Kerberos Service Ticket With RC4 Encryption
+title_fr: 'Ticket Kerberos demandé en RC4 (Kerberoasting)'
+id: 00e8a578-2208-55f4-bf86-186140698277
+status: stable
+description: 'A Kerberos service ticket was requested with weak RC4 encryption, a common technique to crack service account passwords offline.'
+description_fr: 'Un ticket de service Kerberos a été demandé avec le chiffrement faible RC4. Cette technique permet de casser hors ligne le mot de passe des comptes de service.'
+author: LogHunter
+date: 2026-09-27
+tags:
+    - attack.credential-access
+    - attack.t1558.003
+logsource:
+    product: windows
+    service: security
+detection:
+    selection:
+        EventID: 4769
+        TicketEncryptionType: '0x17'
+        Status: '0x0'
+    filter_machine:
+        ServiceName|endswith: '$'
+    filter_krbtgt:
+        ServiceName: 'krbtgt'
+    condition: selection and not 1 of filter_*
+falsepositives:
+    - Old applications that still require RC4
+level: medium
